@@ -2,52 +2,52 @@
 <style>
   @import url('https://fonts.googleapis.com/earlyaccess/nanumgothic.css');
   :root {
-    --paper: #E7E1D2;
-    --paper-2: #DCD5C3;
-    --paper-3: #D2CAB4;
-    --ink: #2A2620;
-    --ink-soft: #5A5346;
-    --moss: #5F6E45;
-    --moss-deep: #47512F;
-    --clay: #A97452;
-    --line: #C7BFA9;
+    --paper: #FFF9F5;
+    --paper-2: #FDEDF3;
+    --paper-3: #FBDCEA;
+    --ink: #2B1030;
+    --ink-soft: #7A5570;
+    --moss: #E0245E;
+    --moss-deep: #A0134A;
+    --clay: #FF9A3C;
+    --line: #F3D0E0;
     --radius: 2px;
   }
 
   @media (prefers-color-scheme: dark) {
     :root {
-      --paper: #17150F;
-      --paper-2: #1F1C14;
-      --paper-3: #29241A;
-      --ink: #ECE4D4;
-      --ink-soft: #B7AD98;
-      --moss: #93A56B;
-      --moss-deep: #B7C68F;
-      --clay: #C98F63;
-      --line: #38321F;
+      --paper: #170B1F;
+      --paper-2: #21112C;
+      --paper-3: #2C1638;
+      --ink: #FBEEF5;
+      --ink-soft: #CBA6C0;
+      --moss: #FF4FA0;
+      --moss-deep: #FF8FC4;
+      --clay: #FFB25C;
+      --line: #3E1F49;
     }
   }
   :root[data-theme="dark"] {
-    --paper: #17150F;
-    --paper-2: #1F1C14;
-    --paper-3: #29241A;
-    --ink: #ECE4D4;
-    --ink-soft: #B7AD98;
-    --moss: #93A56B;
-    --moss-deep: #B7C68F;
-    --clay: #C98F63;
-    --line: #38321F;
+    --paper: #170B1F;
+    --paper-2: #21112C;
+    --paper-3: #2C1638;
+    --ink: #FBEEF5;
+    --ink-soft: #CBA6C0;
+    --moss: #FF4FA0;
+    --moss-deep: #FF8FC4;
+    --clay: #FFB25C;
+    --line: #3E1F49;
   }
   :root[data-theme="light"] {
-    --paper: #E7E1D2;
-    --paper-2: #DCD5C3;
-    --paper-3: #D2CAB4;
-    --ink: #2A2620;
-    --ink-soft: #5A5346;
-    --moss: #5F6E45;
-    --moss-deep: #47512F;
-    --clay: #A97452;
-    --line: #C7BFA9;
+    --paper: #FFF9F5;
+    --paper-2: #FDEDF3;
+    --paper-3: #FBDCEA;
+    --ink: #2B1030;
+    --ink-soft: #7A5570;
+    --moss: #E0245E;
+    --moss-deep: #A0134A;
+    --clay: #FF9A3C;
+    --line: #F3D0E0;
   }
 
   * { box-sizing: border-box; }
@@ -175,6 +175,17 @@
     padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem);
     overflow: hidden;
   }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: -20% -10% auto -10%;
+    height: 140%;
+    background:
+      radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--moss) 22%, transparent) 0%, transparent 55%),
+      radial-gradient(circle at 85% 10%, color-mix(in srgb, var(--clay) 26%, transparent) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+  }
   .hero-grid {
     display: grid;
     grid-template-columns: 1.15fr 0.85fr;
@@ -190,7 +201,10 @@
   }
   .hero h1 em {
     font-style: normal;
-    color: var(--moss);
+    background: linear-gradient(100deg, var(--moss) 0%, var(--clay) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .hero p.lede {
     max-width: 46ch;
@@ -460,7 +474,7 @@
 
   /* ---------- cta / footer ---------- */
   .cta-band {
-    background: var(--moss-deep);
+    background: linear-gradient(135deg, var(--moss) 0%, var(--moss-deep) 55%, var(--clay) 100%);
     color: var(--paper);
     border-top: none;
   }
