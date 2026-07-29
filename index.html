@@ -1,0 +1,731 @@
+<title>결 필라테스 — GYEOL PILATES</title>
+<style>
+  :root {
+    --paper: #E7E1D2;
+    --paper-2: #DCD5C3;
+    --paper-3: #D2CAB4;
+    --ink: #2A2620;
+    --ink-soft: #5A5346;
+    --moss: #5F6E45;
+    --moss-deep: #47512F;
+    --clay: #A97452;
+    --line: #C7BFA9;
+    --radius: 2px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #17150F;
+      --paper-2: #1F1C14;
+      --paper-3: #29241A;
+      --ink: #ECE4D4;
+      --ink-soft: #B7AD98;
+      --moss: #93A56B;
+      --moss-deep: #B7C68F;
+      --clay: #C98F63;
+      --line: #38321F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #17150F;
+    --paper-2: #1F1C14;
+    --paper-3: #29241A;
+    --ink: #ECE4D4;
+    --ink-soft: #B7AD98;
+    --moss: #93A56B;
+    --moss-deep: #B7C68F;
+    --clay: #C98F63;
+    --line: #38321F;
+  }
+  :root[data-theme="light"] {
+    --paper: #E7E1D2;
+    --paper-2: #DCD5C3;
+    --paper-3: #D2CAB4;
+    --ink: #2A2620;
+    --ink-soft: #5A5346;
+    --moss: #5F6E45;
+    --moss-deep: #47512F;
+    --clay: #A97452;
+    --line: #C7BFA9;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Noto Serif KR', Georgia, serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .display {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', 'Pretendard', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  .mono {
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+  }
+  .eyebrow {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', 'Pretendard', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.72rem;
+    color: var(--moss);
+  }
+
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  p { text-wrap: pretty; }
+
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 3px;
+  }
+
+  /* measuring-rail spine along the left of the content column */
+  .rail {
+    position: relative;
+  }
+  .rail::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: repeating-linear-gradient(
+      to bottom,
+      var(--line) 0px, var(--line) 1px,
+      transparent 1px, transparent 12px
+    );
+  }
+
+  .wrap {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 clamp(1.25rem, 4vw, 3rem);
+  }
+
+  /* ---------- header ---------- */
+  header.site {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.9rem clamp(1.25rem, 4vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .mark {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+  .mark .glyph {
+    font-family: Futura, 'Century Gothic', serif;
+    font-size: 1.5rem;
+    color: var(--moss);
+    border: 1px solid var(--moss);
+    width: 2.1rem;
+    height: 2.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+  }
+  .mark .word {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    letter-spacing: 0.08em;
+    font-size: 0.95rem;
+  }
+  .mark .word small {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    color: var(--ink-soft);
+    margin-top: 0.15rem;
+  }
+  nav.links {
+    display: flex;
+    gap: clamp(0.9rem, 2vw, 1.8rem);
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+  }
+  nav.links a { text-decoration: none; color: var(--ink-soft); transition: color 0.2s; }
+  nav.links a:hover { color: var(--moss); }
+  @media (max-width: 720px) { nav.links { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    padding: clamp(3rem, 8vw, 6rem) 0 clamp(2.5rem, 6vw, 4rem);
+    overflow: hidden;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 2rem;
+    align-items: center;
+  }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero h1 {
+    font-size: clamp(2.4rem, 5.4vw, 4.1rem);
+    line-height: 1.14;
+    font-weight: 700;
+    margin-top: 0.9rem;
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--moss);
+  }
+  .hero p.lede {
+    max-width: 46ch;
+    margin-top: 1.4rem;
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+  }
+  .cta-row {
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    margin-top: 2.2rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    letter-spacing: 0.04em;
+    font-size: 0.85rem;
+    text-decoration: none;
+    background: var(--moss);
+    color: var(--paper);
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--moss);
+    transition: transform 0.15s ease, background 0.2s;
+    display: inline-block;
+  }
+  .btn:hover { transform: translateY(-1px); background: var(--moss-deep); }
+  .link-quiet {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2px;
+  }
+  .link-quiet:hover { border-color: var(--moss); color: var(--moss); }
+
+  canvas#breath {
+    width: 100%;
+    height: 260px;
+    display: block;
+  }
+  .breath-caption {
+    font-family: Futura, 'Century Gothic', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: right;
+    margin-top: -0.4rem;
+  }
+
+  /* ---------- section shell ---------- */
+  section { padding: clamp(3rem, 7vw, 5rem) 0; border-top: 1px solid var(--line); }
+  .section-head {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 2rem;
+    margin-bottom: 2.6rem;
+  }
+  @media (max-width: 720px) { .section-head { grid-template-columns: 1fr; gap: 0.8rem; } }
+  .section-head h2 {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+  }
+  .section-head .desc { color: var(--ink-soft); max-width: 52ch; }
+
+  /* ---------- philosophy quote ---------- */
+  blockquote.quote {
+    margin: 2.2rem 0 0;
+    padding: 1.6rem 0 1.6rem 1.6rem;
+    border-left: 2px solid var(--moss);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ink);
+    max-width: 60ch;
+  }
+  blockquote.quote footer {
+    margin-top: 0.8rem;
+    font-family: Futura, 'Century Gothic', sans-serif;
+    font-style: normal;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- principles ---------- */
+  ol.principles {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 720px) { ol.principles { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 460px) { ol.principles { grid-template-columns: 1fr; } }
+  ol.principles li {
+    background: var(--paper);
+    padding: 1.6rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  ol.principles .num {
+    font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    font-variant-numeric: tabular-nums;
+    color: var(--clay);
+    font-size: 0.85rem;
+  }
+  ol.principles h3 {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    font-size: 1.05rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: baseline;
+  }
+  ol.principles h3 span.en {
+    font-size: 0.68rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    font-family: Futura, sans-serif;
+  }
+  ol.principles p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+
+  /* ---------- classes ---------- */
+  .classes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+  @media (max-width: 720px) { .classes { grid-template-columns: 1fr; } }
+  .class-card {
+    border: 1px solid var(--line);
+    padding: 1.8rem;
+    background: var(--paper-2);
+    border-radius: var(--radius);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .class-card:hover { border-color: var(--moss); transform: translateY(-2px); }
+  .class-card .tag-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.9rem;
+  }
+  .class-card .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.03em;
+    color: var(--moss);
+    border: 1px solid var(--moss);
+    padding: 0.15rem 0.5rem;
+    border-radius: 999px;
+  }
+  .class-card h3 {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    font-size: 1.15rem;
+    margin-bottom: 0.15rem;
+  }
+  .class-card .en {
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    font-family: Futura, sans-serif;
+  }
+  .class-card p { color: var(--ink-soft); font-size: 0.93rem; margin: 0.8rem 0 0; }
+  .class-card .meta {
+    margin-top: 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    display: flex;
+    gap: 1rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* ---------- instructor ---------- */
+  .instructor {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+  @media (max-width: 720px) { .instructor { grid-template-columns: 1fr; } }
+  .avatar {
+    aspect-ratio: 4/5;
+    border: 1px solid var(--line);
+    background:
+      repeating-linear-gradient(135deg, transparent 0 8px, color-mix(in srgb, var(--moss) 12%, transparent) 8px 9px),
+      var(--paper-2);
+    display: flex;
+    align-items: flex-end;
+    padding: 1.2rem;
+  }
+  .avatar .initial {
+    font-family: Futura, 'Century Gothic', serif;
+    font-size: 3.4rem;
+    color: var(--moss);
+  }
+  .instructor h3 {
+    font-family: Futura, 'Century Gothic', 'Avenir Next', sans-serif;
+    font-size: 1.4rem;
+  }
+  .instructor .role {
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    font-family: Futura, sans-serif;
+    letter-spacing: 0.03em;
+    margin-top: 0.3rem;
+  }
+  .instructor ul {
+    margin: 1.2rem 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .instructor ul li::before { content: "— "; color: var(--clay); }
+  .instructor .bio { margin-top: 1.3rem; max-width: 60ch; }
+
+  /* ---------- schedule ---------- */
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); }
+  table.schedule {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 640px;
+    font-size: 0.9rem;
+  }
+  table.schedule th, table.schedule td {
+    border: 1px solid var(--line);
+    padding: 0.75rem 0.9rem;
+    text-align: center;
+  }
+  table.schedule thead th {
+    background: var(--paper-3);
+    font-family: Futura, 'Century Gothic', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  table.schedule td.time {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-soft);
+    background: var(--paper-2);
+    white-space: nowrap;
+  }
+  table.schedule td.on { color: var(--moss); font-family: 'JetBrains Mono', monospace; font-size: 0.82rem; }
+  table.schedule td.off { color: var(--line); }
+  .schedule-note {
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+  }
+  .schedule-note .mono { color: var(--clay); }
+
+  /* ---------- cta / footer ---------- */
+  .cta-band {
+    background: var(--moss-deep);
+    color: var(--paper);
+    border-top: none;
+  }
+  :root[data-theme="dark"] .cta-band, @media (prefers-color-scheme: dark) { }
+  .cta-band h2 { color: var(--paper); }
+  .cta-band .section-head .desc { color: color-mix(in srgb, var(--paper) 70%, transparent); }
+  .cta-band .btn {
+    background: var(--paper);
+    color: var(--moss-deep);
+    border-color: var(--paper);
+  }
+  .cta-band .btn:hover { background: var(--clay); border-color: var(--clay); color: var(--paper); }
+
+  footer.site {
+    padding: 2.4rem 0 3rem;
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer.site .cols { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+  footer.site .cols div { display: flex; flex-direction: column; gap: 0.3rem; }
+  footer.site .cols span.label {
+    font-family: Futura, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.65rem;
+    color: var(--moss);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+  }
+</style>
+
+<header class="site">
+  <div class="nav-inner">
+    <div class="mark">
+      <span class="glyph">결</span>
+      <span class="word">GYEOL PILATES<small>결 필라테스 · 성수</small></span>
+    </div>
+    <nav class="links">
+      <a href="#philosophy">철학</a>
+      <a href="#classes">클래스</a>
+      <a href="#instructor">강사</a>
+      <a href="#schedule">시간표</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">PRIVATE PILATES STUDIO · 서울 성수동</p>
+      <h1 class="display">몸의 <em>결</em>을 따라<br>움직임을 다시 짓다</h1>
+      <p class="lede">결 필라테스는 리포머의 스프링 장력처럼 미세하게 조절된 저항 속에서, 호흡과 정렬을 하나의 흐름으로 엮어가는 프라이빗 스튜디오입니다. 화려한 동작보다, 정확한 한 번의 움직임을 먼저 봅니다.</p>
+      <div class="cta-row">
+        <a class="btn" href="#contact">체험 수업 예약하기</a>
+        <a class="link-quiet" href="#classes">클래스 살펴보기 →</a>
+      </div>
+    </div>
+    <div>
+      <canvas id="breath" aria-hidden="true"></canvas>
+      <p class="breath-caption">INHALE 4S — EXHALE 4S</p>
+    </div>
+  </div>
+</section>
+
+<section id="philosophy">
+  <div class="wrap rail" style="padding-left:1.6rem;">
+    <div class="section-head">
+      <p class="eyebrow">PHILOSOPHY</p>
+      <div>
+        <h2 class="display">정확함은 스타일이 아니라<br>방법입니다</h2>
+        <p class="desc">조셉 필라테스가 고안한 컨트롤로지(Contrology)는 근력 운동이 아니라 신경과 근육의 대화입니다. 결 필라테스는 이 원리를 리포머와 매트 위에서 그대로 재현하며, 통증 이력과 체형에 맞춰 저항의 세기를 스프링 단위로 조절합니다.</p>
+      </div>
+    </div>
+
+    <blockquote class="quote">
+      “Physical fitness is the first requisite of happiness.”
+      <footer>신체의 건강은 행복의 첫째 조건이다 — Joseph Pilates, 컨트롤로지 창시자</footer>
+    </blockquote>
+
+    <ol class="principles" style="margin-top:3rem;">
+      <li><span class="num mono">01</span><h3>집중 <span class="en">Concentration</span></h3><p>동작 하나하나에 온전히 주의를 기울입니다.</p></li>
+      <li><span class="num mono">02</span><h3>조절 <span class="en">Control</span></h3><p>관성이 아닌 근육의 의지로 움직입니다.</p></li>
+      <li><span class="num mono">03</span><h3>중심 <span class="en">Centering</span></h3><p>파워하우스(코어)에서 모든 움직임이 시작됩니다.</p></li>
+      <li><span class="num mono">04</span><h3>정확성 <span class="en">Precision</span></h3><p>많은 반복보다 정확한 한 번의 동작을 추구합니다.</p></li>
+      <li><span class="num mono">05</span><h3>호흡 <span class="en">Breathing</span></h3><p>들숨과 날숨이 움직임의 리듬을 만듭니다.</p></li>
+      <li><span class="num mono">06</span><h3>흐름 <span class="en">Flow</span></h3><p>동작과 동작 사이, 끊김 없이 이어집니다.</p></li>
+    </ol>
+  </div>
+</section>
+
+<section id="classes">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">CLASSES</p>
+      <div>
+        <h2 class="display">클래스</h2>
+        <p class="desc">기구와 인원 구성에 따라 네 가지 형태로 운영됩니다. 모든 클래스는 50분이며, 첫 수업은 반드시 체형 평가와 함께 시작합니다.</p>
+      </div>
+    </div>
+    <div class="classes">
+      <div class="class-card">
+        <div class="tag-row"><span class="tag">MAT</span></div>
+        <h3>매트 필라테스</h3>
+        <p class="en">Mat Pilates</p>
+        <p>소도구 없이 체중과 호흡만으로 코어의 안정성부터 다시 세우는 기초 수업입니다.</p>
+        <div class="meta"><span>50분</span><span>초급–중급</span><span>최대 4인</span></div>
+      </div>
+      <div class="class-card">
+        <div class="tag-row"><span class="tag">REFORMER</span></div>
+        <h3>리포머 필라테스</h3>
+        <p class="en">Reformer Pilates</p>
+        <p>스프링 저항을 이용해 근력과 가동성을 함께 훈련하는 결 필라테스의 대표 클래스입니다.</p>
+        <div class="meta"><span>50분</span><span>전 레벨</span><span>1:2</span></div>
+      </div>
+      <div class="class-card">
+        <div class="tag-row"><span class="tag">1:1</span></div>
+        <h3>프라이빗 세션</h3>
+        <p class="en">Private Session</p>
+        <p>체형과 통증 이력에 맞춘 개인 맞춤 커리큘럼으로, 매 회차 진행 상황을 기록합니다.</p>
+        <div class="meta"><span>50분</span><span>전 레벨</span><span>1인</span></div>
+      </div>
+      <div class="class-card">
+        <div class="tag-row"><span class="tag">DUET</span></div>
+        <h3>듀엣 &amp; 소그룹</h3>
+        <p class="en">Duet &amp; Small Group</p>
+        <p>최대 3인으로 제한해, 서로의 호흡과 리듬을 방해하지 않는 밀도 있는 수업을 진행합니다.</p>
+        <div class="meta"><span>50분</span><span>중급 이상</span><span>최대 3인</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="instructor">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">INSTRUCTOR</p>
+      <div>
+        <h2 class="display">강사 소개</h2>
+      </div>
+    </div>
+    <div class="instructor">
+      <div class="avatar"><span class="initial">이서연</span></div>
+      <div>
+        <h3>이서연</h3>
+        <p class="role">Head Instructor · 8년차</p>
+        <ul>
+          <li>Pilates Method Alliance(PMA) 국제 자격 보유</li>
+          <li>前 재활운동센터 전담 트레이너 4년</li>
+          <li>척추측만·거북목 교정 프로그램 200건 이상 진행</li>
+        </ul>
+        <p class="bio">처음 필라테스를 배운 건 허리 디스크 재활 때문이었습니다. 그때 배운 건 “버티는 힘”이 아니라 “정확히 쓰는 힘”이었고, 그 차이를 알려주는 것이 지금 제 수업의 전부입니다. 회원 한 분 한 분의 정렬을 먼저 읽고, 그 다음에 스프링을 겁니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">SCHEDULE</p>
+      <div>
+        <h2 class="display">시간표</h2>
+        <p class="desc">모든 리포머·소그룹 클래스는 예약제로 운영되며, 인원 제한으로 조기 마감될 수 있습니다.</p>
+      </div>
+    </div>
+    <div class="table-scroll">
+      <table class="schedule">
+        <thead>
+          <tr><th>시간</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="time">07:00</td><td class="on">리포머</td><td class="off">—</td><td class="on">리포머</td><td class="off">—</td><td class="on">리포머</td><td class="off">—</td></tr>
+          <tr><td class="time">09:30</td><td class="on">매트</td><td class="on">듀엣</td><td class="on">매트</td><td class="on">듀엣</td><td class="on">매트</td><td class="on">매트</td></tr>
+          <tr><td class="time">11:00</td><td class="on">1:1</td><td class="on">1:1</td><td class="on">1:1</td><td class="on">1:1</td><td class="on">1:1</td><td class="on">리포머</td></tr>
+          <tr><td class="time">14:00</td><td class="off">—</td><td class="on">리포머</td><td class="off">—</td><td class="on">리포머</td><td class="off">—</td><td class="on">듀엣</td></tr>
+          <tr><td class="time">19:00</td><td class="on">리포머</td><td class="on">매트</td><td class="on">리포머</td><td class="on">매트</td><td class="on">리포머</td><td class="off">—</td></tr>
+          <tr><td class="time">20:30</td><td class="on">1:1</td><td class="off">—</td><td class="on">1:1</td><td class="off">—</td><td class="on">1:1</td><td class="off">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="schedule-note">시간표는 매월 첫째 주 갱신됩니다 · 예약 변경은 수업 <span class="mono">6시간</span> 전까지 가능합니다.</p>
+  </div>
+</section>
+
+<section class="cta-band" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow" style="color:var(--clay);">TRIAL CLASS</p>
+      <div>
+        <h2 class="display">먼저, 몸의 결을 읽습니다</h2>
+        <p class="desc">체험 수업은 1인 1회에 한해 무료로 제공됩니다. 예약 시 통증 이력과 운동 경험을 간단히 남겨주시면, 첫 수업 전 체형 평가에 반영합니다.</p>
+      </div>
+    </div>
+    <a class="btn" href="mailto:hello@gyeolpilates.kr">체험 수업 예약하기 →</a>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1.5rem; width:100%;">
+    <div class="mark"><span class="glyph" style="width:1.6rem;height:1.6rem;font-size:1.05rem;">결</span><span class="word" style="font-size:0.8rem;">GYEOL PILATES</span></div>
+    <div class="cols">
+      <div><span class="label">Studio</span>서울 성동구 성수동 (예약 후 상세주소 안내)</div>
+      <div><span class="label">Contact</span>hello@gyeolpilates.kr · @gyeol.pilates</div>
+      <div><span class="label">Hours</span>화–토 07:00–21:00 · 월·일 휴무</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var canvas = document.getElementById('breath');
+    var ctx = canvas.getContext('2d');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    function styleColor(varName, fallback) {
+      var v = getComputedStyle(document.documentElement).getPropertyValue(varName).trim();
+      return v || fallback;
+    }
+
+    function resize() {
+      var rect = canvas.getBoundingClientRect();
+      canvas.width = Math.max(1, rect.width * dpr);
+      canvas.height = Math.max(1, rect.height * dpr);
+    }
+
+    function draw(t) {
+      resize();
+      var w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+      var moss = styleColor('--moss', '#5F6E45');
+      var clay = styleColor('--clay', '#A97452');
+      var cycles = 3;
+      var breathPhase = reduceMotion ? 0.5 : (Math.sin(t / 4000) + 1) / 2; // 0..1 inhale/exhale
+      var amp = h * (0.14 + 0.10 * breathPhase);
+
+      for (var line = 0; line < 2; line++) {
+        ctx.beginPath();
+        var col = line === 0 ? moss : clay;
+        ctx.strokeStyle = col;
+        ctx.globalAlpha = line === 0 ? 0.85 : 0.35;
+        ctx.lineWidth = (line === 0 ? 2 : 1.5) * dpr;
+        for (var x = 0; x <= w; x += 4) {
+          var progress = x / w;
+          var phaseShift = line * 0.6;
+          var y = h / 2 + Math.sin(progress * Math.PI * 2 * cycles + phaseShift + (reduceMotion ? 0 : t / 900)) * amp * (0.4 + 0.6 * Math.sin(progress * Math.PI));
+          if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+
+      if (!reduceMotion) {
+        requestAnimationFrame(draw);
+      }
+    }
+
+    window.addEventListener('resize', resize);
+    requestAnimationFrame(draw);
+    if (reduceMotion) draw(0);
+  })();
+</script>
